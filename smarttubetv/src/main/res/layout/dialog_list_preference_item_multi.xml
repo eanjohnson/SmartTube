@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- MOD: iOS 6 plain table row, the check box is hidden -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="@drawable/ios6_cell_bg"
     android:clickable="true"
     android:focusable="true"
     android:descendantFocusability="blocksDescendants"
@@ -18,12 +19,18 @@
         android:layout_height="match_parent"
         android:focusable="false"
         android:clickable="false"
-        android:layout_marginEnd="@dimen/lb_preference_item_icon_margin_end"
+        android:duplicateParentState="true"
+        android:button="@drawable/ios6_checkmark"
+        android:background="@null"
+        android:layout_marginStart="@dimen/lb_preference_item_icon_margin_end"
         android:visibility="gone"
         android:layout_gravity="center_vertical" />
 
-    <LinearLayout android:layout_width="wrap_content"
+    <LinearLayout android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:duplicateParentState="true"
         android:orientation="vertical">
         <Space android:layout_width="0dp" android:layout_height="@dimen/lb_preference_item_text_space_top" />
         <TextView
@@ -31,7 +38,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/lb_preference_item_primary_text_margin_bottom"
-            android:fontFamily="sans-serif"
+            android:duplicateParentState="true"
+            android:fontFamily="@font/ios6_sans"
+            android:textStyle="bold"
             android:textColor="@color/lb_preference_item_primary_text_color"
             android:textSize="@dimen/lb_preference_item_primary_text_size"/>
         <Space android:layout_width="0dp" android:layout_height="@dimen/lb_preference_item_text_space_bottom" />

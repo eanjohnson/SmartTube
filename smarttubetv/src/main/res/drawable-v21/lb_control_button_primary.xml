@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- iOS 6 style focus: a soft blue glow behind the icon, like showsTouchWhenHighlighted -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:constantSize="true">
+    <item android:state_pressed="true">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="45dp"
+                android:startColor="#FFFFFFFF"
+                android:centerColor="#B33FA9FF"
+                android:endColor="#001E6EEB" />
+            <size
+                android:height="@dimen/lb_control_button_diameter"
+                android:width="@dimen/lb_control_button_diameter" />
+        </shape>
+    </item>
+    <item android:state_focused="true">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="45dp"
+                android:startColor="#F23FA9FF"
+                android:centerColor="#991E6EEB"
+                android:endColor="#001E6EEB" />
+            <size
+                android:height="@dimen/lb_control_button_diameter"
+                android:width="@dimen/lb_control_button_diameter" />
+        </shape>
+    </item>
+</selector>

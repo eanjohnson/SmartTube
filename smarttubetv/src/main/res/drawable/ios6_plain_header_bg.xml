@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Plain table section header: blue-grey gradient with a darker top edge -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_plain_header_edge" />
+        </shape>
+    </item>
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_plain_header_start"
+                android:endColor="@color/ios6_plain_header_end"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,11 +1,6 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#EEEEEE"/>
-
-    <corners android:radius="30dp"/>
-
-    <padding
-        android:left="6dp"
-        android:top="6dp"
-        android:right="6dp"
-        android:bottom="6dp"/>
-</shape>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MOD: iOS 6 UISearchBar field. The container uses addStatesFromChildren to get the editor's focus. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true" android:drawable="@drawable/ios6_search_field_focused" />
+    <item android:drawable="@drawable/ios6_search_field_normal" />
+</selector>

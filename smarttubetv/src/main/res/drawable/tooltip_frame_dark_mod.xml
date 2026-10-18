@@ -15,8 +15,23 @@
   ~ limitations under the License.
   -->
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-       android:shape="rectangle">
-    <solid android:color="@color/tooltip_background_dark_mod" />
-    <corners android:radius="@dimen/tooltip_corner_radius_mod" />
-</shape>
+<!-- MOD: iOS 6 dark HUD bubble (glossy charcoal with a hairline rim) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_tooltip_rim" />
+            <corners android:radius="@dimen/tooltip_corner_radius_mod" />
+        </shape>
+    </item>
+    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_tooltip_start"
+                android:centerColor="@color/ios6_tooltip_center"
+                android:centerY="0.5"
+                android:endColor="@color/ios6_tooltip_end" />
+            <corners android:radius="@dimen/tooltip_corner_radius_mod" />
+        </shape>
+    </item>
+</layer-list>

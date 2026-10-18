@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Right edge of the linen side panel: inner shadow plus an etched 1px line -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:startColor="#00000000"
+                android:endColor="#8C000000"
+                android:type="linear" />
+        </shape>
+    </item>
+    <item android:left="10dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#E6000000" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Search suggestion chip: dark rounded bar button -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_media_card_edge" />
+            <corners android:radius="@dimen/ios6_tag_corner_radius" />
+        </shape>
+    </item>
+    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_media_card_shine"
+                android:centerColor="@color/ios6_media_card_start"
+                android:centerY="0.15"
+                android:endColor="@color/ios6_media_card_end" />
+            <corners android:radius="@dimen/ios6_tag_corner_radius" />
+        </shape>
+    </item>
+</layer-list>

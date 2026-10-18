@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GuidedStep actions panel: dark media surface (the v23 variant adds an edge shadow) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ios6_media_bg" />
+</layer-list>

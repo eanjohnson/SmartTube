@@ -83,6 +83,10 @@ public class ComplexImageCardView extends ImageCardView {
         mComplexImageView.setBadgeColor(color);
     }
 
+    public void setBadgeBackground(int resId) {
+        mComplexImageView.setBadgeBackground(resId);
+    }
+
     /**
      * Sets the progress.
      */

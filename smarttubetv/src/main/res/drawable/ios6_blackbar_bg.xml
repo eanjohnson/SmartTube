@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- UIBarStyleBlackTranslucent (pre-API 23 approximation, layer gravity is unavailable) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="@color/ios6_blackbar_gloss_start"
+        android:centerColor="@color/ios6_blackbar_body"
+        android:endColor="@color/ios6_blackbar_body"
+        android:centerY="0.25"
+        android:type="linear" />
+</shape>

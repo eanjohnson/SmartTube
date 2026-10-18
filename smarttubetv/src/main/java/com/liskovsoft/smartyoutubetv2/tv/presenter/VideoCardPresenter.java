@@ -39,6 +39,11 @@ public class VideoCardPresenter extends LongClickPresenter {
     private int mDefaultTextColor = -1;
     private int mSelectedBackgroundColor = -1;
     private int mSelectedTextColor = -1;
+    private int mContentTextColor = -1;
+    private int mDefaultBackgroundRes;
+    private int mSelectedBackgroundRes;
+    private int mBadgeBackgroundRes;
+    private int mBadgeAccentBackgroundRes;
     private int mCardPreviewType;
     private int mThumbQuality;
     private int mWidth;
@@ -55,7 +60,13 @@ public class VideoCardPresenter extends LongClickPresenter {
         mSelectedBackgroundColor =
                 ContextCompat.getColor(context, Helpers.getThemeAttr(context, R.attr.cardSelectedBackground));
         mSelectedTextColor =
-                ContextCompat.getColor(context, R.color.card_selected_text_grey);
+                ViewUtil.getThemedColor(context, R.attr.cardSelectedTextColor, R.color.card_selected_text_grey);
+        mContentTextColor =
+                ViewUtil.getThemedColor(context, R.attr.cardContentTextColor, R.color.card_default_text);
+        mDefaultBackgroundRes = Helpers.getThemeAttr(context, R.attr.cardDefaultBackgroundDrawable);
+        mSelectedBackgroundRes = Helpers.getThemeAttr(context, R.attr.cardSelectedBackgroundDrawable);
+        mBadgeBackgroundRes = Helpers.getThemeAttr(context, R.attr.cardBadgeBackground);
+        mBadgeAccentBackgroundRes = Helpers.getThemeAttr(context, R.attr.cardBadgeAccentBackground);
 
         mCardPreviewType = getCardPreviewType(context);
         mThumbQuality = getThumbQuality(context);
@@ -94,7 +105,9 @@ public class VideoCardPresenter extends LongClickPresenter {
 
     private void updateCardBackgroundColor(ComplexImageCardView view, boolean selected) {
         int backgroundColor = selected ? mSelectedBackgroundColor : mDefaultBackgroundColor;
+        int backgroundRes = selected ? mSelectedBackgroundRes : mDefaultBackgroundRes;
         int textColor = selected ? mSelectedTextColor : mDefaultTextColor;
+        int contentTextColor = selected ? mSelectedTextColor : mContentTextColor;
 
         // Both background colors should be set because the view's
         // background is temporarily visible during animations.
@@ -102,9 +115,7 @@ public class VideoCardPresenter extends LongClickPresenter {
         //view.setBackgroundColor(backgroundColor);
 
         View infoField = view.findViewById(R.id.info_field);
-        if (infoField != null) {
-            infoField.setBackgroundColor(backgroundColor);
-        }
+        ViewUtil.setThemedBackground(infoField, backgroundRes, backgroundColor);
 
         TextView titleText = view.findViewById(R.id.title_text);
         if (titleText != null) {
@@ -112,7 +123,7 @@ public class VideoCardPresenter extends LongClickPresenter {
         }
         TextView contentText = view.findViewById(R.id.content_text);
         if (contentText != null) {
-            contentText.setTextColor(textColor);
+            contentText.setTextColor(contentTextColor);
         }
     }
 
@@ -135,8 +146,14 @@ public class VideoCardPresenter extends LongClickPresenter {
                 video.isShorts ? context.getString(R.string.header_shorts).toUpperCase() :
                 video.badge
         );
-        cardView.setBadgeColor(video.hasNewContent || video.isLive || video.isUpcoming ?
-                ContextCompat.getColor(context, R.color.dark_red) : ContextCompat.getColor(context, R.color.black));
+        boolean isAccentBadge = video.hasNewContent || video.isLive || video.isUpcoming;
+        int badgeBackgroundRes = isAccentBadge ? mBadgeAccentBackgroundRes : mBadgeBackgroundRes;
+        if (badgeBackgroundRes != 0) {
+            cardView.setBadgeBackground(badgeBackgroundRes);
+        } else {
+            cardView.setBadgeColor(isAccentBadge ?
+                    ContextCompat.getColor(context, R.color.dark_red) : ContextCompat.getColor(context, R.color.black));
+        }
 
         if (mCardPreviewType != MainUIData.CARD_PREVIEW_DISABLED) {
             cardView.setPreview(video);

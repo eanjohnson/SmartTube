@@ -20,6 +20,8 @@ import java.util.List;
 public class MainUIData extends DataChangeBase implements ProfileChangeListener {
     private static final String MAIN_UI_DATA = "main_ui_data2";
     public static final int CARD_PREVIEW_DISABLED = 0;
+    /** Position of the iOS 6 scheme in the color scheme list (the default look) */
+    private static final int COLOR_SCHEME_IOS6 = 8;
     public static final int CARD_PREVIEW_MUTED = 1;
     public static final int CARD_PREVIEW_FULL = 2;
     public static final int CHANNEL_SORTING_NEW_CONTENT = 0;
@@ -118,6 +120,7 @@ public class MainUIData extends DataChangeBase implements ProfileChangeListener 
     private final Runnable mPersistStateInt = this::persistStateInt;
     private boolean mIsUnlocalizedTitlesEnabled;
     private long mUiTweaks;
+    private boolean mIsIos6SchemeApplied;
 
     private MainUIData(Context context) {
         mContext = context;
@@ -421,6 +424,12 @@ public class MainUIData extends DataChangeBase implements ProfileChangeListener 
                 "App.Theme.Leanback.Blue.OLED.Browse",
                 "App.Theme.Leanback.Blue.Preferences",
                 mContext));
+        mColorSchemes.add(new ColorScheme(
+                R.string.color_scheme_ios6,
+                "App.Theme.IOS6.Player",
+                "App.Theme.IOS6.Browse",
+                "App.Theme.IOS6.Preferences",
+                mContext));
     }
 
     private void restoreState() {
@@ -431,7 +440,7 @@ public class MainUIData extends DataChangeBase implements ProfileChangeListener 
         //mIsCardAnimatedPreviewsEnabled = Helpers.parseBoolean(split, 0, true);
         mVideoGridScale = Helpers.parseFloat(split, 1, 1.0f); // 4 cards in a row
         mUIScale = Helpers.parseFloat(split, 2, 1.0f);
-        mColorSchemeIndex = Helpers.parseInt(split, 3, 1);
+        mColorSchemeIndex = Helpers.parseInt(split, 3, COLOR_SCHEME_IOS6);
         mIsCardMultilineTitleEnabled = Helpers.parseBoolean(split, 4, true);
         mChannelCategorySorting = Helpers.parseInt(split, 5, CHANNEL_SORTING_LAST_VIEWED);
         mPlaylistsStyle = Helpers.parseInt(split, 6, PLAYLISTS_STYLE_GRID);
@@ -452,6 +461,7 @@ public class MainUIData extends DataChangeBase implements ProfileChangeListener 
         mCardPreviewType = Helpers.parseInt(split, 21, CARD_PREVIEW_DISABLED);
         mIsUnlocalizedTitlesEnabled = Helpers.parseBoolean(split, 22, false);
         mUiTweaks = Helpers.parseLong(split, 23, UI_TWEAK_DEFAULT);
+        mIsIos6SchemeApplied = Helpers.parseBoolean(split, 24, false);
 
         int idx = -1;
         for (Long menuItem : MENU_ITEM_DEFAULT_ORDER) {
@@ -474,6 +484,12 @@ public class MainUIData extends DataChangeBase implements ProfileChangeListener 
             if (!mMenuItemsOrdered.contains(provider.getId())) {
                 mMenuItemsOrdered.add(provider.getId());
             }
+        }
+
+        // Switch existing users to the iOS 6 look once. The flag is saved with the next change.
+        if (!mIsIos6SchemeApplied) {
+            mColorSchemeIndex = COLOR_SCHEME_IOS6;
+            mIsIos6SchemeApplied = true;
         }
 
         if (mColorSchemes.size() <= mColorSchemeIndex) {
@@ -499,7 +515,7 @@ public class MainUIData extends DataChangeBase implements ProfileChangeListener 
                 mIsUploadsOldLookEnabled, mIsUploadsAutoLoadEnabled, mCardTextScrollSpeed, mMenuItems, mTopButtons,
                 null, mThumbQuality, mIsCardMultilineSubtitleEnabled, Helpers.mergeList(mMenuItemsOrdered),
                 mIsChannelsFilterEnabled, mIsChannelSearchBarEnabled, mIsPinnedChannelRowsEnabled, mCardPreviewType,
-                mIsUnlocalizedTitlesEnabled, mUiTweaks));
+                mIsUnlocalizedTitlesEnabled, mUiTweaks, mIsIos6SchemeApplied));
     }
 
     public static class ColorScheme {

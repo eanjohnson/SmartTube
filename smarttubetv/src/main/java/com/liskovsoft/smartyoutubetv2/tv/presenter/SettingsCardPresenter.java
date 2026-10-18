@@ -21,6 +21,8 @@ public class SettingsCardPresenter extends Presenter {
     private int mDefaultTextColor;
     private int mSelectedBackgroundColor;
     private int mSelectedTextColor;
+    private int mDefaultBackgroundRes;
+    private int mSelectedBackgroundRes;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
@@ -33,7 +35,9 @@ public class SettingsCardPresenter extends Presenter {
         mSelectedBackgroundColor =
                 ContextCompat.getColor(context, R.color.card_selected_background_white);
         mSelectedTextColor =
-                ContextCompat.getColor(context, R.color.card_selected_text_grey);
+                ViewUtil.getThemedColor(context, R.attr.cardSelectedTextColor, R.color.card_selected_text_grey);
+        mDefaultBackgroundRes = Helpers.getThemeAttr(context, R.attr.cardDefaultBackgroundDrawable);
+        mSelectedBackgroundRes = Helpers.getThemeAttr(context, R.attr.cardSelectedBackgroundDrawable);
 
         @SuppressLint("InflateParams")
         View container = LayoutInflater.from(context).inflate(R.layout.settings_card, null);
@@ -43,16 +47,17 @@ public class SettingsCardPresenter extends Presenter {
         //}
 
         TextView textView = container.findViewById(R.id.settings_title);
-        textView.setBackgroundColor(mDefaultBackgroundColor);
+        ViewUtil.setThemedBackground(textView, mDefaultBackgroundRes, mDefaultBackgroundColor);
         textView.setTextColor(mDefaultTextColor);
 
         ViewUtil.setTextScrollSpeed(textView, getCardTextScrollSpeed(context));
 
         container.setOnFocusChangeListener((v, hasFocus) -> {
             int backgroundColor = hasFocus ? mSelectedBackgroundColor : mDefaultBackgroundColor;
+            int backgroundRes = hasFocus ? mSelectedBackgroundRes : mDefaultBackgroundRes;
             int textColor = hasFocus ? mSelectedTextColor : mDefaultTextColor;
-            
-            textView.setBackgroundColor(backgroundColor);
+
+            ViewUtil.setThemedBackground(textView, backgroundRes, backgroundColor);
             textView.setTextColor(textColor);
 
             if (hasFocus) {

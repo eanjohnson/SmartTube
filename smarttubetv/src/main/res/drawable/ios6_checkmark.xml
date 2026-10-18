@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Checkmark accessory used for single and multiple choice rows -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:state_focused="true" android:drawable="@drawable/ios6_checkmark_white" />
+    <item android:state_checked="true" android:state_pressed="true" android:drawable="@drawable/ios6_checkmark_white" />
+    <item android:state_checked="true" android:drawable="@drawable/ios6_checkmark_blue" />
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <size android:width="@dimen/ios6_checkmark_size" android:height="@dimen/ios6_checkmark_size" />
+        </shape>
+    </item>
+</selector>

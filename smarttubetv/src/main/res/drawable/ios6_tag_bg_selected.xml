@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Focused search suggestion chip: glossy selection blue -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_selection_edge" />
+            <corners android:radius="@dimen/ios6_tag_corner_radius" />
+        </shape>
+    </item>
+    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_selection_shine"
+                android:centerColor="@color/ios6_selection_start"
+                android:centerY="0.2"
+                android:endColor="@color/ios6_selection_end" />
+            <corners android:radius="@dimen/ios6_tag_corner_radius" />
+        </shape>
+    </item>
+</layer-list>

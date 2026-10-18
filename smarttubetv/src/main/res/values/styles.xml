@@ -7,6 +7,15 @@
     <attr name="cardSelectedBackground" format="reference"/>
     <attr name="cardProgressStyle" format="reference"/>
     <attr name="appLogo" format="reference"/>
+    <!-- Optional card styling. When a theme sets these they take precedence over the plain colors above. -->
+    <attr name="cardDefaultBackgroundDrawable" format="reference"/>
+    <attr name="cardSelectedBackgroundDrawable" format="reference"/>
+    <attr name="tagBackgroundDrawable" format="reference"/>
+    <attr name="tagSelectedBackgroundDrawable" format="reference"/>
+    <attr name="cardSelectedTextColor" format="reference"/>
+    <attr name="cardContentTextColor" format="reference"/>
+    <attr name="cardBadgeBackground" format="reference"/>
+    <attr name="cardBadgeAccentBackground" format="reference"/>
 
     <!-- Increase spacing between items in GridView -->
     <style name="GridViewStyle" parent="Widget.Leanback.GridItems.VerticalGridView">
@@ -19,9 +28,81 @@
         <item name="android:horizontalSpacing">@dimen/grid_item_horizontal_spacing</item>
     </style>
 
-    <!-- Decrease header spacing in BrowseView -->
+    <!-- Decrease header spacing in BrowseView. iOS 6 linen side panel. -->
     <style name="BrowseHeaderStyle" parent="Widget.Leanback.Headers.VerticalGridView">
         <item name="android:verticalSpacing">@dimen/browse_headers_vertical_spacing</item>
+        <item name="android:background">@drawable/ios6_linen</item>
+        <item name="android:paddingStart">@dimen/ios6_headers_padding_start</item>
+        <item name="android:paddingTop">@dimen/ios6_headers_padding_top</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <!-- MOD: iOS 6 UINavigationBar behind the browse title -->
+    <!-- iOS 6 typeface (TeX Gyre Heros, see tools/ios6/fonts) for the leanback text appearances -->
+    <style name="TextAppearance.Leanback" parent="TextAppearance.LeanbackBase">
+        <item name="android:fontFamily">@font/ios6_sans</item>
+    </style>
+    <style name="TextAppearance.Leanback.Title" parent="TextAppearance.Leanback">
+        <item name="android:fontFamily">@font/ios6_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/lb_browse_title_text_size</item>
+        <item name="android:textColor">@color/lb_browse_title_color</item>
+    </style>
+    <style name="TextAppearance.Leanback.DetailsDescriptionTitle">
+        <item name="android:textSize">@dimen/lb_details_description_title_text_size</item>
+        <item name="android:textColor">@color/lb_details_description_color</item>
+        <item name="android:fontFamily">@font/ios6_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@color/ios6_linen_text_shadow</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+    <style name="TextAppearance.Leanback.DetailsDescriptionSubtitle">
+        <item name="android:textSize">@dimen/lb_details_description_subtitle_text_size</item>
+        <item name="android:textColor">@color/lb_details_description_color</item>
+        <item name="android:fontFamily">@font/ios6_sans</item>
+        <item name="android:shadowColor">@color/ios6_linen_text_shadow</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    <style name="TextAppearance.Leanback.DetailsDescriptionBody">
+        <item name="android:textSize">@dimen/lb_details_description_body_text_size</item>
+        <item name="android:textColor">@color/lb_details_description_body_color</item>
+        <item name="android:fontFamily">@font/ios6_sans</item>
+    </style>
+    <style name="TextAppearance.Leanback.PlaybackControlsTime">
+        <item name="android:textSize">@dimen/lb_playback_controls_time_text_size</item>
+        <item name="android:textColor">@color/lb_playback_controls_time_text_color</item>
+        <item name="android:fontFamily">@font/ios6_sans</item>
+    </style>
+    <style name="TextAppearance.Leanback.ErrorMessage">
+        <item name="android:textSize">@dimen/lb_error_message_text_size</item>
+        <item name="android:textColor">@color/lb_error_message</item>
+        <item name="android:fontFamily">@font/ios6_sans</item>
+    </style>
+
+    <style name="Widget.Leanback.TitleView">
+        <item name="android:background">@drawable/ios6_navbar_bg</item>
+        <item name="android:paddingTop">@dimen/ios6_navbar_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/ios6_navbar_padding_vertical</item>
+        <item name="android:paddingStart">?attr/browsePaddingStart</item>
+        <item name="android:paddingEnd">?attr/browsePaddingEnd</item>
+        <item name="android:minHeight">@dimen/ios6_navbar_height</item>
+    </style>
+
+    <!-- MOD: white etched navigation bar title -->
+    <style name="Widget.Leanback.Title.Text">
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">end|center_vertical</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textAppearance">@style/TextAppearance.Leanback.Title</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@color/ios6_navbar_title_shadow</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">-2</item>
+        <item name="android:shadowRadius">0.5</item>
     </style>
 
     <!-- Color scheme: Teal (Default) -->
@@ -72,12 +153,68 @@
     <style name="App.Theme.Leanback.GuidedStep" parent="Theme.Leanback.GuidedStep">
         <item name="android:windowBackground">@color/shelf_background_dark</item>
         <item name="shelfBackground">@color/shelf_background_dark</item>
+        <!-- iOS 6: guidance on linen, actions on the charcoal media surface -->
+        <item name="guidedStepBackground">@drawable/ios6_linen</item>
+        <item name="guidedActionsBackground">@drawable/ios6_guidedactions_bg</item>
+        <item name="guidedActionsBackgroundDark">@drawable/ios6_guidedactions_bg</item>
+        <item name="guidedActionItemContainerStyle">@style/Widget.IOS6.GuidedActionItemContainerStyle</item>
+        <item name="guidedActionItemTitleStyle">@style/Widget.IOS6.GuidedActionItemTitleStyle</item>
+        <item name="guidanceTitleStyle">@style/Widget.IOS6.GuidanceTitleStyle</item>
+        <item name="guidanceDescriptionStyle">@style/Widget.IOS6.GuidanceDescriptionStyle</item>
+        <item name="guidanceBreadcrumbStyle">@style/Widget.IOS6.GuidanceBreadcrumbStyle</item>
+        <item name="android:colorAccent" tools:targetApi="21">@color/ios6_blue</item>
         <!-- Disable activity transition animations -->
         <item name="android:windowAnimationStyle">@null</item>
         <!-- Make activity fullscreen -->
         <item name="android:windowFullscreen">true</item>
         <!-- Overlay bottom bar (can't hide it from styles) -->
         <item tools:targetApi="19" name="android:windowTranslucentNavigation">true</item>
+    </style>
+    <style name="Widget.IOS6.GuidedActionItemContainerStyle" parent="Widget.Leanback.GuidedActionItemContainerStyle">
+        <item name="android:foreground">@null</item>
+        <item name="android:background">@drawable/ios6_guidedaction_bg</item>
+    </style>
+    <style name="Widget.IOS6.GuidedActionItemTitleStyle" parent="Widget.Leanback.GuidedActionItemTitleStyle">
+        <item name="android:fontFamily">@font/ios6_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@color/ios6_linen_text_shadow</item>
+        <item name="android:shadowDy">-1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    <style name="Widget.IOS6.GuidanceTitleStyle" parent="Widget.Leanback.GuidanceTitleStyle">
+        <item name="android:fontFamily">@font/ios6_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@color/ios6_linen_text_shadow</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+    <style name="Widget.IOS6.GuidanceDescriptionStyle" parent="Widget.Leanback.GuidanceDescriptionStyle">
+        <item name="android:fontFamily">@font/ios6_sans</item>
+        <item name="android:textColor">#D9F1F1F1</item>
+        <item name="android:shadowColor">@color/ios6_linen_text_shadow</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    <style name="Widget.IOS6.GuidanceBreadcrumbStyle" parent="Widget.Leanback.GuidanceBreadcrumbStyle">
+        <item name="android:fontFamily">@font/ios6_sans</item>
+        <item name="android:shadowColor">@color/ios6_linen_text_shadow</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    <style name="Widget.IOS6.Button" parent="android:Widget.Button">
+        <item name="android:background">@drawable/ios6_barbutton</item>
+        <item name="android:minWidth">120dp</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:fontFamily">@font/ios6_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/ios6_white</item>
+        <item name="android:shadowColor">@color/ios6_navbar_title_shadow</item>
+        <item name="android:shadowDy">-1</item>
+        <item name="android:shadowRadius">1</item>
     </style>
     <!-- AppDialogFragment style -->
     <style name="App.Theme.Leanback.Preferences.Base" parent="Theme.Leanback">
@@ -248,4 +385,47 @@
         <item name="cardSelectedBackground">@color/card_selected_background_white_grey</item>
     </style>
     <!--  End Color scheme: Dark Blue (OLED)  -->
+
+    <!--  Color scheme: iOS 6 (Default)  -->
+    <style name="App.Theme.IOS6.Player" parent="App.Theme.Leanback.Player">
+        <item name="playbackProgressPrimaryColor">@color/ios6_slider_min_start</item>
+        <item name="playbackProgressSecondaryColor">@color/ios6_slider_buffer</item>
+        <item name="playbackControlsIconHighlightColor">@color/ios6_white</item>
+        <item name="cardDefaultBackground">@color/ios6_media_card_end</item>
+        <item name="cardSelectedBackground">@color/ios6_selection_end</item>
+        <item name="cardDefaultBackgroundDrawable">@drawable/ios6_card_info_bg</item>
+        <item name="cardSelectedBackgroundDrawable">@drawable/ios6_card_info_bg_selected</item>
+        <item name="cardSelectedTextColor">@color/ios6_white</item>
+        <item name="cardContentTextColor">@color/ios6_media_secondary_text</item>
+        <item name="cardBadgeBackground">@drawable/ios6_badge_dark</item>
+        <item name="cardBadgeAccentBackground">@drawable/ios6_badge_red</item>
+        <item name="cardProgressStyle">@style/ProgressBarHorizontal.IOS6</item>
+        <item name="android:colorAccent" tools:targetApi="21">@color/ios6_blue</item>
+    </style>
+    <style name="App.Theme.IOS6.Browse" parent="App.Theme.Leanback.Browse">
+        <item name="android:windowBackground">@drawable/ios6_media_bg</item>
+        <item name="shelfBackground">@drawable/ios6_media_bg</item>
+        <item name="brandColor">@color/ios6_linen_base</item>
+        <item name="brandAccentColor">@color/ios6_blue</item>
+        <item name="cardDefaultBackground">@color/ios6_media_card_end</item>
+        <item name="cardSelectedBackground">@color/ios6_selection_end</item>
+        <item name="cardDefaultBackgroundDrawable">@drawable/ios6_card_info_bg</item>
+        <item name="cardSelectedBackgroundDrawable">@drawable/ios6_card_info_bg_selected</item>
+        <item name="cardSelectedTextColor">@color/ios6_white</item>
+        <item name="cardContentTextColor">@color/ios6_media_secondary_text</item>
+        <item name="cardBadgeBackground">@drawable/ios6_badge_dark</item>
+        <item name="cardBadgeAccentBackground">@drawable/ios6_badge_red</item>
+        <item name="cardProgressStyle">@style/ProgressBarHorizontal.IOS6</item>
+        <item name="tagBackgroundDrawable">@drawable/ios6_tag_bg</item>
+        <item name="tagSelectedBackgroundDrawable">@drawable/ios6_tag_bg_selected</item>
+        <item name="android:colorAccent" tools:targetApi="21">@color/ios6_blue</item>
+    </style>
+    <style name="App.Theme.IOS6.Preferences" parent="App.Theme.Leanback.Preferences">
+        <item name="android:colorAccent" tools:targetApi="21">@color/ios6_blue</item>
+        <item name="android:colorPrimary" tools:targetApi="21">@color/ios6_navbar_end</item>
+    </style>
+    <style name="ProgressBarHorizontal.IOS6" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/ios6_card_progress</item>
+    </style>
+    <!--  End Color scheme: iOS 6  -->
 </resources>

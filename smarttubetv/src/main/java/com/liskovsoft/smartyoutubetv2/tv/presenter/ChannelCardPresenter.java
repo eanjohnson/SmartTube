@@ -33,6 +33,8 @@ public class ChannelCardPresenter extends LongClickPresenter {
     private int mSelectedBackgroundColor;
     private int mNewContentBackgroundColor;
     private int mSelectedTextColor;
+    private int mDefaultBackgroundRes;
+    private int mSelectedBackgroundRes;
     private int mWidth;
     private int mHeight;
 
@@ -49,7 +51,9 @@ public class ChannelCardPresenter extends LongClickPresenter {
         mSelectedBackgroundColor =
                 ContextCompat.getColor(context, Helpers.getThemeAttr(context, R.attr.cardSelectedBackground));
         mSelectedTextColor =
-                ContextCompat.getColor(context, R.color.card_selected_text_grey);
+                ViewUtil.getThemedColor(context, R.attr.cardSelectedTextColor, R.color.card_selected_text_grey);
+        mDefaultBackgroundRes = Helpers.getThemeAttr(context, R.attr.cardDefaultBackgroundDrawable);
+        mSelectedBackgroundRes = Helpers.getThemeAttr(context, R.attr.cardSelectedBackgroundDrawable);
 
         updateDimensions(context);
 
@@ -61,7 +65,7 @@ public class ChannelCardPresenter extends LongClickPresenter {
         //}
 
         TextView textView = container.findViewById(R.id.channel_title);
-        textView.setBackgroundColor(mDefaultBackgroundColor);
+        ViewUtil.setThemedBackground(textView, mDefaultBackgroundRes, mDefaultBackgroundColor);
         textView.setTextColor(mDefaultTextColor);
 
         boolean autoScrollEnabled = isCardTextAutoScrollEnabled(context);
@@ -70,11 +74,13 @@ public class ChannelCardPresenter extends LongClickPresenter {
         }
 
         container.setOnFocusChangeListener((v, hasFocus) -> {
+            boolean hasNewContent = textView.getTag(R.id.channel_new_content) != null;
             int backgroundColor = hasFocus ? mSelectedBackgroundColor :
-                    textView.getTag(R.id.channel_new_content) != null ? mNewContentBackgroundColor : mDefaultBackgroundColor;
+                    hasNewContent ? mNewContentBackgroundColor : mDefaultBackgroundColor;
+            int backgroundRes = hasFocus ? mSelectedBackgroundRes : hasNewContent ? 0 : mDefaultBackgroundRes;
             int textColor = hasFocus ? mSelectedTextColor : mDefaultTextColor;
-            
-            textView.setBackgroundColor(backgroundColor);
+
+            ViewUtil.setThemedBackground(textView, backgroundRes, backgroundColor);
             textView.setTextColor(textColor);
 
             if (!autoScrollEnabled) {
@@ -104,7 +110,8 @@ public class ChannelCardPresenter extends LongClickPresenter {
         textView.setText(video.getTitle());
 
         // We should setup props each time because object may be reused by the underlying RecyclerView
-        textView.setBackgroundColor(video.hasNewContent ? mNewContentBackgroundColor : mDefaultBackgroundColor);
+        ViewUtil.setThemedBackground(textView, video.hasNewContent ? 0 : mDefaultBackgroundRes,
+                video.hasNewContent ? mNewContentBackgroundColor : mDefaultBackgroundColor);
         textView.setTag(R.id.channel_new_content, video.hasNewContent ? true : null);
 
 

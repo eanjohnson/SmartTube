@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MOD: the voice search orb is drawn as an iOS 6 bordered bar button, like the title orbs -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <View
+        android:id="@+id/search_orb"
+        android:layout_width="@dimen/ios6_barbutton_width"
+        android:layout_height="@dimen/lb_search_orb_size"
+        android:duplicateParentState="true"
+        android:background="@drawable/ios6_barbutton" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="@dimen/ios6_barbutton_icon_size"
+        android:maxHeight="@dimen/ios6_barbutton_icon_size"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center"
+        android:src="@drawable/lb_ic_search_mic_out"
+        android:contentDescription="@string/orb_search_action" />
+
+</merge>

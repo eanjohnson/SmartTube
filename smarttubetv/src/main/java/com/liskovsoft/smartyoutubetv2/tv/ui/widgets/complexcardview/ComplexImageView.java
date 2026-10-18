@@ -112,6 +112,14 @@ public class ComplexImageView extends RelativeLayout {
         mBadgeText.setBackgroundColor(color);
     }
 
+    public void setBadgeBackground(int resId) {
+        if (mBadgeText == null) {
+            return;
+        }
+
+        mBadgeText.setBackgroundResource(resId);
+    }
+
     /**
      * Sets the progress.
      */

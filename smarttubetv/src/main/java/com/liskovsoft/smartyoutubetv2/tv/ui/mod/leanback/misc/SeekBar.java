@@ -19,9 +19,11 @@ package com.liskovsoft.smartyoutubetv2.tv.ui.mod.leanback.misc;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Bundle;
@@ -40,6 +42,7 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * Replacement of SeekBar, has two bar heights and two thumb size when focused/not_focused.
+ * Drawn as an iOS 6 UISlider: glossy blue min track, white max track and a silver knob.
  * The widget does not deal with KeyEvent, it's client's responsibility to set a key listener.
  * @hide
  */
@@ -76,6 +79,18 @@ public final class SeekBar extends View {
     private final Paint mProgressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint mKnobPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint mKnobRimPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint mKnobShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint mOutlinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+    // iOS 6 UISlider colours (see res/values/ios6_colors.xml)
+    private static final int[] MIN_TRACK_COLORS = {0xFF0B3A88, 0xFF3064B7, 0xFF77ADF6, 0xFF447ABF};
+    private static final float[] MIN_TRACK_STOPS = {0f, 0.12f, 0.88f, 1f};
+    private static final int[] MAX_TRACK_COLORS = {0xFF808080, 0xFFACACAC, 0xFFFFFFFF, 0xFFAFAFAF};
+    private static final float[] MAX_TRACK_STOPS = {0f, 0.12f, 0.85f, 1f};
+    private static final int[] BUFFER_TRACK_COLORS = {0xFF6E7C90, 0xFF9AA8BC, 0xFFD5DEEA, 0xFF9AA4B2};
+    private static final int[] KNOB_COLORS = {0xFFBEBEBE, 0xFFA6A6A6, 0xFFFCFCFC};
+    private static final float[] KNOB_STOPS = {0f, 0.1f, 0.95f};
 
     private int mProgress;
     private int mSecondProgress;
@@ -96,6 +111,11 @@ public final class SeekBar extends View {
         mSecondProgressPaint.setColor(Color.LTGRAY);
         mProgressPaint.setColor(Color.RED);
         mKnobPaint.setColor(Color.WHITE);
+        mKnobRimPaint.setColor(0xFF9D9D9D);
+        mKnobShadowPaint.setColor(0x66000000);
+        mOutlinePaint.setColor(0x66000000);
+        mOutlinePaint.setStyle(Paint.Style.STROKE);
+        mOutlinePaint.setStrokeWidth(Math.max(1, context.getResources().getDisplayMetrics().density));
         mBarHeight = context.getResources().getDimensionPixelSize(
                 R.dimen.lb_playback_transport_progressbar_bar_height);
         mActiveBarHeight = context.getResources().getDimensionPixelSize(
@@ -145,18 +165,27 @@ public final class SeekBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        final int radius = isFocused() ? mActiveRadius : mBarHeight / 2;
-        canvas.drawRoundRect(mBackgroundRect, radius, radius, mBackgroundPaint);
+        final float trackRadius = mBackgroundRect.height() / 2;
+        canvas.drawRoundRect(mBackgroundRect, trackRadius, trackRadius, mBackgroundPaint);
         if (mSecondProgressRect.right > mSecondProgressRect.left) {
-            canvas.drawRoundRect(mSecondProgressRect, radius, radius, mSecondProgressPaint);
+            canvas.drawRoundRect(mSecondProgressRect, trackRadius, trackRadius, mSecondProgressPaint);
         }
-        canvas.drawRoundRect(mProgressRect, radius, radius, mProgressPaint);
+        if (mProgressRect.right > mProgressRect.left) {
+            canvas.drawRoundRect(mProgressRect, trackRadius, trackRadius, mProgressPaint);
+        }
 
         for (SeekBarRectangle rectangle : mSeekBarRectangles) {
-            canvas.drawRoundRect(rectangle.rect, radius, radius, rectangle.paint);
+            canvas.drawRect(rectangle.rect, rectangle.paint);
         }
 
-        canvas.drawCircle(mKnobx, getHeight() / 2, radius, mKnobPaint);
+        canvas.drawRoundRect(mBackgroundRect, trackRadius, trackRadius, mOutlinePaint);
+
+        final int radius = isFocused() ? mActiveRadius : mBarHeight;
+        final float centerY = getHeight() / 2f;
+        final float rim = mOutlinePaint.getStrokeWidth();
+        canvas.drawCircle(mKnobx, centerY + rim, radius, mKnobShadowPaint);
+        canvas.drawCircle(mKnobx, centerY, radius, mKnobRimPaint);
+        canvas.drawCircle(mKnobx, centerY, radius - rim, mKnobPaint);
     }
 
     /**
@@ -241,21 +270,28 @@ public final class SeekBar extends View {
         final int width = getWidth();
         final int height = getHeight();
         final int verticalPadding = (height - barHeight) / 2;
+        final int radius = isFocused() ? mActiveRadius : mBarHeight;
 
-        mBackgroundRect.set(mBarHeight / 2, verticalPadding,
-                width - mBarHeight / 2, height - verticalPadding);
+        mBackgroundRect.set(radius, verticalPadding, width - radius, height - verticalPadding);
 
-        final int radius = isFocused() ? mActiveRadius : mBarHeight / 2;
         final int progressWidth = width - radius * 2;
-        final float progressPixels = mProgress / (float) mMax * progressWidth;
-        mProgressRect.set(mBarHeight / 2, verticalPadding, mBarHeight / 2 + progressPixels,
-                height - verticalPadding);
+        final float progressPixels = mMax > 0 ? mProgress / (float) mMax * progressWidth : 0;
+        mProgressRect.set(radius, verticalPadding, radius + progressPixels, height - verticalPadding);
 
-        final float secondProgressPixels = mSecondProgress / (float) mMax * progressWidth;
-        mSecondProgressRect.set(mProgressRect.right, verticalPadding,
-                mBarHeight / 2 + secondProgressPixels, height - verticalPadding);
+        final float secondProgressPixels = mMax > 0 ? mSecondProgress / (float) mMax * progressWidth : 0;
+        mSecondProgressRect.set(radius, verticalPadding,
+                radius + Math.max(progressPixels, secondProgressPixels), height - verticalPadding);
 
         mKnobx = radius + (int) progressPixels;
+
+        // Vertical gloss gradients, rebuilt only when the bar geometry changes
+        final float top = verticalPadding;
+        final float bottom = height - verticalPadding;
+        mProgressPaint.setShader(new LinearGradient(0, top, 0, bottom, MIN_TRACK_COLORS, MIN_TRACK_STOPS, Shader.TileMode.CLAMP));
+        mBackgroundPaint.setShader(new LinearGradient(0, top, 0, bottom, MAX_TRACK_COLORS, MAX_TRACK_STOPS, Shader.TileMode.CLAMP));
+        mSecondProgressPaint.setShader(new LinearGradient(0, top, 0, bottom, BUFFER_TRACK_COLORS, MAX_TRACK_STOPS, Shader.TileMode.CLAMP));
+        final float centerY = height / 2f;
+        mKnobPaint.setShader(new LinearGradient(0, centerY - radius, 0, centerY + radius, KNOB_COLORS, KNOB_STOPS, Shader.TileMode.CLAMP));
 
         for (SeekBarRectangle seekBarRectangle : mSeekBarRectangles) {
             seekBarRectangle.rect.set(seekBarRectangle.rect.left, verticalPadding, seekBarRectangle.rect.right, height - verticalPadding);

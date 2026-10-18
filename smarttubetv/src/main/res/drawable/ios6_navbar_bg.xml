@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- UINavigationBar, default (blue-grey) style: 1px highlight on top, gradient body, dark bottom edge -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_navbar_highlight" />
+        </shape>
+    </item>
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_navbar_edge" />
+        </shape>
+    </item>
+    <item android:top="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_navbar_start"
+                android:centerColor="@color/ios6_navbar_center"
+                android:endColor="@color/ios6_navbar_end"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

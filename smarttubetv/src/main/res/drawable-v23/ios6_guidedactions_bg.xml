@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GuidedStep actions panel: dark media surface with a linen-edge shadow on the left -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ios6_media_bg" />
+    <item android:gravity="start|fill_vertical" android:width="12dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:startColor="@color/ios6_linen_shadow"
+                android:endColor="@color/ios6_transparent" />
+        </shape>
+    </item>
+</layer-list>

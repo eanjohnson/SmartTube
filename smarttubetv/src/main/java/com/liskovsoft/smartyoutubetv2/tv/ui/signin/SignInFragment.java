@@ -81,7 +81,7 @@ public class SignInFragment extends GuidedStepSupportFragment implements SignInV
         String description = getString(R.string.signin_view_description, signInUrl);
         int start = description.indexOf(signInUrl);
         int end = start + signInUrl.length();
-        CharSequence coloredDescription = Utils.color(description, ContextCompat.getColor(getContext(), R.color.red), start, end);
+        CharSequence coloredDescription = Utils.color(description, ContextCompat.getColor(getContext(), R.color.ios6_link_on_dark), start, end);
 
         getGuidanceStylist().getDescriptionView().setText(coloredDescription);
     }

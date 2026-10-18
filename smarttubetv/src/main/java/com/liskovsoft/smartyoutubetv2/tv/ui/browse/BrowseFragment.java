@@ -188,7 +188,6 @@ public class BrowseFragment extends BrowseSupportFragment implements BrowseView 
         setHeadersState(HEADERS_ENABLED);
         setHeadersTransitionOnBackEnabled(true);
 
-        int brandColorRes = Helpers.getThemeAttr(getContext(), R.attr.brandColor);
         int brandAccentColorRes = Helpers.getThemeAttr(getContext(), R.attr.brandAccentColor);
 
         updateBadge();
@@ -196,8 +195,8 @@ public class BrowseFragment extends BrowseSupportFragment implements BrowseView 
         // This title replaces badge in case one is null
         //setTitle(getString(R.string.browse_title));
 
-        // Set fastLane (or headers) background color
-        setBrandColor(ContextCompat.getColor(getContext(), brandColorRes));
+        // NOTE: fastLane (headers) background comes from BrowseHeaderStyle (iOS 6 linen).
+        // Calling setBrandColor() would replace it with a flat color.
 
         // Set search icon color.
         setSearchAffordanceColor(ContextCompat.getColor(getContext(), brandAccentColorRes));

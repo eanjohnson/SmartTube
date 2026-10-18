@@ -45,6 +45,8 @@ public class IconHeaderItemPresenter extends RowHeaderPresenter {
         mDefaultIcon = new ColorDrawable(ContextCompat.getColor(viewGroup.getContext(), R.color.lb_grey));
 
         View view = inflater.inflate(R.layout.icon_header_item, null);
+        // The grid wraps the row width, so stretch the row to make the selection span the side panel
+        view.setMinimumWidth(viewGroup.getResources().getDimensionPixelSize(R.dimen.ios6_header_item_width));
         view.setAlpha(mUnselectedAlpha); // Initialize icons to be at half-opacity.
 
         return new ViewHolder(view);

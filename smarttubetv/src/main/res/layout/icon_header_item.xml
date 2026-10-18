@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Side panel row: white etched label on linen, blue glossy pill when focused (iOS 6) -->
 <androidx.leanback.widget.NonOverlappingLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingStart="@dimen/ios6_header_item_padding_horizontal"
+    android:paddingEnd="@dimen/ios6_header_item_padding_horizontal"
+    android:paddingTop="@dimen/ios6_header_item_padding_vertical"
+    android:paddingBottom="@dimen/ios6_header_item_padding_vertical"
+    android:gravity="center_vertical"
+    android:background="@drawable/ios6_header_item_bg"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/header_icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:contentDescription="@string/header_icon" />
 
     <com.liskovsoft.smartyoutubetv2.tv.ui.widgets.marqueetextviewcompat.HeaderMarqueeTextViewCompat
         android:id="@+id/header_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="12dp"
 
         android:singleLine="true"
         android:maxWidth="150sp"
@@ -24,5 +30,10 @@
         android:ellipsize="marquee"
         android:scrollHorizontally="true"
 
-        style="@style/TextAppearance.Leanback.Header"/>
+        style="@style/TextAppearance.Leanback.Header"
+        android:textStyle="bold"
+        android:shadowColor="@color/ios6_linen_text_shadow"
+        android:shadowDx="0"
+        android:shadowDy="2"
+        android:shadowRadius="1" />
 </androidx.leanback.widget.NonOverlappingLinearLayout>

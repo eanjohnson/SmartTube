@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Focused card caption: glossy table selection blue -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_selection_shine" />
+        </shape>
+    </item>
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_selection_start"
+                android:endColor="@color/ios6_selection_end"
+                android:type="linear" />
+        </shape>
+    </item>
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#2EFFFFFF"
+                android:centerColor="#0AFFFFFF"
+                android:endColor="#00FFFFFF"
+                android:centerY="0.4"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

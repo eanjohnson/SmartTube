@@ -281,4 +281,27 @@ public class ViewUtil {
         int paddingExtra = (int) (4 * textView.getResources().getDisplayMetrics().density);
         textView.setPadding(textView.getPaddingLeft(), paddingExtra, textView.getPaddingRight(), paddingExtra);
     }
+
+    /**
+     * Sets the drawable from the theme when one is defined, the fallback color otherwise.
+     */
+    public static void setThemedBackground(View view, int drawableResId, int fallbackColor) {
+        if (view == null) {
+            return;
+        }
+
+        if (drawableResId != 0) {
+            view.setBackgroundResource(drawableResId);
+        } else {
+            view.setBackgroundColor(fallbackColor);
+        }
+    }
+
+    /**
+     * Returns the color behind the theme attribute or the fallback color when the theme doesn't define it.
+     */
+    public static int getThemedColor(Context context, int attr, int fallbackColorResId) {
+        int colorResId = Helpers.getThemeAttr(context, attr);
+        return ContextCompat.getColor(context, colorResId != 0 ? colorResId : fallbackColorResId);
+    }
 }

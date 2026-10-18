@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Card caption: dark glossy plate like the iTunes and Videos chrome -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_media_card_shine" />
+        </shape>
+    </item>
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_media_card_start"
+                android:endColor="@color/ios6_media_card_end"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

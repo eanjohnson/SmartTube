@@ -41,6 +41,7 @@
             android:layout_marginTop="@dimen/lb_search_bar_inner_margin_top"
             android:layout_marginBottom="@dimen/lb_search_bar_inner_margin_bottom"
             android:background="@drawable/rounded_search_bg"
+            android:addStatesFromChildren="true"
             >
 
         <ImageView
@@ -65,7 +66,7 @@
                     android:layout_toEndOf="@+id/lb_search_bar_badge"
                     android:editable="true"
                     android:background="@null"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/ios6_sans"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:imeOptions="normal|flagNoExtractUi|actionSearch"

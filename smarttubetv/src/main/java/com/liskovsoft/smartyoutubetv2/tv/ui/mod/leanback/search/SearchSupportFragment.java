@@ -311,6 +311,8 @@ public class SearchSupportFragment extends Fragment {
 
         FrameLayout searchFrame = (FrameLayout) root.findViewById(R.id.lb_search_frame);
         mSearchBar = (SearchBar) searchFrame.findViewById(R.id.lb_search_bar);
+        // MOD: iOS 6 navigation bar behind the search field (SearchBar resets the xml background)
+        mSearchBar.setBackgroundResource(com.liskovsoft.smartyoutubetv2.tv.R.drawable.ios6_navbar_bg);
         mSearchBar.setOnFocusChangeListener((v, focused) -> {
             Log.d(TAG, "search bar focused");
         });

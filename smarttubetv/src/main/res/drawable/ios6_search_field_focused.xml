@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Focused UISearchBar field: blue rim with a soft glow so the D-pad focus is visible -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Glow -->
+    <item>
+        <shape>
+            <solid android:color="@color/ios6_search_field_glow" />
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+    <!-- Rim -->
+    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
+        <shape>
+            <solid android:color="@color/ios6_blue" />
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+    <!-- Body with the inner shadow along the top edge -->
+    <item android:left="3dp" android:top="3dp" android:right="3dp" android:bottom="3dp">
+        <shape>
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_search_field_shadow"
+                android:centerColor="@color/ios6_white"
+                android:centerY="0.18"
+                android:endColor="@color/ios6_white" />
+            <corners android:radius="30dp" />
+            <padding
+                android:left="4dp"
+                android:top="4dp"
+                android:right="4dp"
+                android:bottom="4dp" />
+        </shape>
+    </item>
+</layer-list>

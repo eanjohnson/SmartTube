@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- UIProgressView (default style): white well with a glossy blue fill -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#B3303135"
+                android:endColor="#B35A5C61"
+                android:type="linear" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape android:shape="rectangle">
+                <gradient
+                    android:angle="270"
+                    android:startColor="@color/ios6_slider_min_end"
+                    android:centerColor="#3B7FE0"
+                    android:endColor="#1E5FC7"
+                    android:type="linear" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

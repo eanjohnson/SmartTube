@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 import com.liskovsoft.smartyoutubetv2.common.prefs.MainUIData;
 import com.liskovsoft.smartyoutubetv2.tv.R;
+import com.liskovsoft.smartyoutubetv2.tv.util.ViewUtil;
 import com.liskovsoft.smartyoutubetv2.common.app.models.search.vineyard.Tag;
 import com.liskovsoft.smartyoutubetv2.common.app.models.search.vineyard.User;
 import com.liskovsoft.smartyoutubetv2.tv.presenter.base.LongClickPresenter;
@@ -17,6 +18,8 @@ public class TagPresenter extends LongClickPresenter {
     private static int sDefaultTextColor;
     private static int sSelectedBackgroundColor;
     private static int sSelectedTextColor;
+    private static int sDefaultBackgroundRes;
+    private static int sSelectedBackgroundRes;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
@@ -28,6 +31,12 @@ public class TagPresenter extends LongClickPresenter {
                 ContextCompat.getColor(parent.getContext(), R.color.card_selected_background_white);
         sSelectedTextColor =
                 ContextCompat.getColor(parent.getContext(), R.color.card_selected_text_grey);
+        // Optional per-theme drawables (iOS 6 chips). Zero falls back to the plain colors above.
+        sDefaultBackgroundRes = Helpers.getThemeAttr(parent.getContext(), R.attr.tagBackgroundDrawable);
+        sSelectedBackgroundRes = Helpers.getThemeAttr(parent.getContext(), R.attr.tagSelectedBackgroundDrawable);
+        if (sSelectedBackgroundRes != 0) {
+            sSelectedTextColor = ViewUtil.getThemedColor(parent.getContext(), R.attr.cardSelectedTextColor, R.color.card_selected_text_grey);
+        }
 
         TagCardView cardView = new TagCardView(parent.getContext()) {
             @Override
@@ -49,7 +58,8 @@ public class TagPresenter extends LongClickPresenter {
     }
 
     private static void updateCardBackgroundColor(TagCardView view, boolean selected) {
-        view.setBackgroundColor(selected ? sSelectedBackgroundColor : sDefaultBackgroundColor);
+        ViewUtil.setThemedBackground(view, selected ? sSelectedBackgroundRes : sDefaultBackgroundRes,
+                selected ? sSelectedBackgroundColor : sDefaultBackgroundColor);
     }
 
     private static void updateCardTextColor(TagCardView view, boolean selected) {

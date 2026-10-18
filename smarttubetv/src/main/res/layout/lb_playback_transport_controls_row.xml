@@ -10,8 +10,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:clipChildren="false"
-    android:clipToPadding="false"
-    android:paddingBottom="@dimen/lb_playback_transport_control_row_padding_bottom" >
+    android:clipToPadding="false" >
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -73,6 +72,9 @@
         android:layout_height="match_parent"
         android:id="@+id/transport_row"
         android:orientation="vertical"
+        android:background="@drawable/ios6_blackbar_bg"
+        android:paddingTop="@dimen/ios6_transport_bar_padding"
+        android:paddingBottom="@dimen/lb_playback_transport_control_row_padding_bottom"
         android:paddingStart="?attr/browsePaddingStart"
         android:paddingEnd="?attr/browsePaddingEnd"
         android:clipChildren="false"

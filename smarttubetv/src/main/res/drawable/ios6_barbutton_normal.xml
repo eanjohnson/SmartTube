@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bordered UIBarButtonItem on the default bar -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Etched highlight under the button -->
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#4DFFFFFF" />
+            <corners android:radius="7dp" />
+        </shape>
+    </item>
+    <item android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_barbutton_border" />
+            <corners android:radius="7dp" />
+        </shape>
+    </item>
+    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_barbutton_start"
+                android:endColor="@color/ios6_barbutton_end"
+                android:type="linear" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+    <!-- Inner top shine -->
+    <item android:left="2dp" android:top="1dp" android:right="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#33FFFFFF"
+                android:centerColor="#00FFFFFF"
+                android:endColor="#00FFFFFF"
+                android:centerY="0.35"
+                android:type="linear" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+</layer-list>

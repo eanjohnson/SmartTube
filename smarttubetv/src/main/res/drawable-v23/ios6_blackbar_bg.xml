@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- UIBarStyleBlackTranslucent: highlight line, glossy top half, flat translucent black below -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_blackbar_body" />
+        </shape>
+    </item>
+    <item android:height="1dp" android:gravity="top">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ios6_blackbar_highlight" />
+        </shape>
+    </item>
+    <item android:top="1dp" android:height="22dp" android:gravity="top">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_blackbar_gloss_start"
+                android:endColor="@color/ios6_blackbar_gloss_end"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

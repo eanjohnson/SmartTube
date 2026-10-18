@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- iOS 6 UISearchBar field: white pill with a dark rim and a soft inner top shadow -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Light etch under the field -->
+    <item android:top="1dp">
+        <shape>
+            <solid android:color="@color/ios6_search_field_etch" />
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+    <!-- Rim -->
+    <item android:bottom="1dp">
+        <shape>
+            <solid android:color="@color/ios6_search_field_rim" />
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+    <!-- Body with the inner shadow along the top edge -->
+    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="2dp">
+        <shape>
+            <gradient
+                android:angle="270"
+                android:startColor="@color/ios6_search_field_shadow"
+                android:centerColor="@color/ios6_white"
+                android:centerY="0.18"
+                android:endColor="@color/ios6_white" />
+            <corners android:radius="30dp" />
+            <padding
+                android:left="6dp"
+                android:top="6dp"
+                android:right="6dp"
+                android:bottom="6dp" />
+        </shape>
+    </item>
+</layer-list>

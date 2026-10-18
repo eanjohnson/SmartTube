@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- iOS 6 palette. Values were measured from iOS 6 reference screenshots and UIKit artwork. -->
+<resources>
+    <!-- UINavigationBar (default blue-grey style) -->
+    <color name="ios6_navbar_highlight">#EFF2F7</color>
+    <color name="ios6_navbar_start">#BCCADB</color>
+    <color name="ios6_navbar_center">#8B9EB9</color>
+    <color name="ios6_navbar_end">#5A749A</color>
+    <color name="ios6_navbar_edge">#2D3642</color>
+    <color name="ios6_navbar_title_shadow">#80283A52</color>
+
+    <!-- Bordered UIBarButtonItem on the default bar -->
+    <color name="ios6_barbutton_border">#343A42</color>
+    <color name="ios6_barbutton_start">#99AAC2</color>
+    <color name="ios6_barbutton_end">#41618E</color>
+    <color name="ios6_barbutton_pressed_start">#6F86A8</color>
+    <color name="ios6_barbutton_pressed_end">#2A4874</color>
+
+    <!-- UIBarStyleBlack / BlackTranslucent bars -->
+    <color name="ios6_blackbar_highlight">#C4898989</color>
+    <color name="ios6_blackbar_gloss_start">#B86C6C6C</color>
+    <color name="ios6_blackbar_gloss_end">#A0191919</color>
+    <color name="ios6_blackbar_body">#99000000</color>
+    <color name="ios6_blackbar_opaque_gloss_start">#FF5E5E5E</color>
+    <color name="ios6_blackbar_opaque_gloss_end">#FF202020</color>
+    <color name="ios6_blackbar_opaque_body">#FF0D0D0D</color>
+
+    <!-- UITableViewCell selection (UITableViewCellSelectionStyleBlue) -->
+    <color name="ios6_selection_start">#058CF5</color>
+    <color name="ios6_selection_end">#015EE6</color>
+    <color name="ios6_selection_edge">#0B4FB6</color>
+    <color name="ios6_selection_shine">#3FA9FF</color>
+
+    <!-- Grouped table (UIGroupTableViewCellBackground on the pinstripe) -->
+    <color name="ios6_group_bg_start">#D7DCE5</color>
+    <color name="ios6_group_bg_end">#C8CDD6</color>
+    <color name="ios6_cell_bg">#F7F7F7</color>
+    <color name="ios6_cell_border">#ABABAB</color>
+    <color name="ios6_cell_separator">#E0E0E0</color>
+    <color name="ios6_cell_text">#000000</color>
+    <color name="ios6_cell_detail_text">#385487</color>
+    <color name="ios6_cell_secondary_text">#7F7F7F</color>
+    <color name="ios6_section_header_text">#4C566C</color>
+    <color name="ios6_section_header_shadow">#FFFFFF</color>
+    <color name="ios6_table_bg">#FFFFFF</color>
+    <color name="ios6_cell_disabled_text">#8C8C8C</color>
+    <color name="ios6_cell_selected_detail_text">#E6FFFFFF</color>
+    <color name="ios6_plain_header_start">#A9B6C6</color>
+    <color name="ios6_plain_header_end">#8E9FB4</color>
+    <color name="ios6_plain_header_edge">#7F8FA3</color>
+    <color name="ios6_plain_header_text_shadow">#66000000</color>
+    <color name="ios6_checkmark">#324F85</color>
+    <color name="ios6_switch_on_start">#0A5FD2</color>
+    <color name="ios6_switch_on_end">#3D93F2</color>
+    <color name="ios6_switch_off_start">#D5D5D5</color>
+    <color name="ios6_switch_off_end">#FDFDFD</color>
+
+    <!-- Dark media surfaces (iPad Videos / iTunes) -->
+    <color name="ios6_media_bg_start">#3A3B3E</color>
+    <color name="ios6_media_bg_end">#16171A</color>
+    <color name="ios6_media_card_start">#4A4B4F</color>
+    <color name="ios6_media_card_end">#2A2B2E</color>
+    <color name="ios6_media_card_shine">#6A6B70</color>
+    <color name="ios6_media_card_edge">#141518</color>
+    <color name="ios6_media_secondary_text">#A6A8AD</color>
+
+    <!-- Linen side panel -->
+    <color name="ios6_linen_base">#464A54</color>
+    <color name="ios6_linen_shadow">#99000000</color>
+    <color name="ios6_linen_text">#FFFFFF</color>
+    <color name="ios6_linen_text_shadow">#CC000000</color>
+    <color name="ios6_etch_dark">#66000000</color>
+    <color name="ios6_etch_light">#1FFFFFFF</color>
+
+    <!-- UISlider / UIProgressView -->
+    <color name="ios6_slider_min_edge">#0B3A88</color>
+    <color name="ios6_slider_min_start">#3064B7</color>
+    <color name="ios6_slider_min_end">#77ADF6</color>
+    <color name="ios6_slider_max_edge">#808080</color>
+    <color name="ios6_slider_max_start">#ACACAC</color>
+    <color name="ios6_slider_max_end">#FFFFFF</color>
+    <color name="ios6_slider_buffer">#CCB0B5BE</color>
+    <color name="ios6_knob_rim">#9D9D9D</color>
+    <color name="ios6_knob_start">#A6A6A6</color>
+    <color name="ios6_knob_end">#FCFCFC</color>
+
+    <!-- HUD / tooltip bubble -->
+    <color name="ios6_tooltip_rim">#B3FFFFFF</color>
+    <color name="ios6_tooltip_start">#F2595959</color>
+    <color name="ios6_tooltip_center">#F2262626</color>
+    <color name="ios6_tooltip_end">#F2111111</color>
+
+    <!-- Badges -->
+    <color name="ios6_badge_red_start">#F25A5A</color>
+    <color name="ios6_badge_red_end">#C40E0E</color>
+    <color name="ios6_badge_dark">#CC1C1D20</color>
+
+    <!-- UISearchBar field -->
+    <color name="ios6_search_field_rim">#8A93A0</color>
+    <color name="ios6_search_field_etch">#59FFFFFF</color>
+    <color name="ios6_search_field_shadow">#C9CBCF</color>
+    <color name="ios6_search_field_glow">#993FA9FF</color>
+    <color name="ios6_search_cursor">#2F6FD8</color>
+
+    <!-- Leanback error page: let the charcoal window background show through -->
+    <color name="lb_error_background_color_translucent">#00000000</color>
+
+    <!-- Leanback search bar overrides: dark text on the opaque white field -->
+    <color name="lb_search_bar_text">#FF000000</color>
+    <color name="lb_search_bar_hint">#FF8C8C8C</color>
+    <color name="lb_search_bar_text_speech_mode">#FF1E6EEB</color>
+    <color name="lb_search_bar_hint_speech_mode">#FF8C8C8C</color>
+    <integer name="lb_search_bar_speech_mode_background_alpha">255</integer>
+    <integer name="lb_search_bar_text_mode_background_alpha">255</integer>
+
+    <!-- Common -->
+    <color name="ios6_blue">#1E6EEB</color>
+    <color name="ios6_link_on_dark">#8CC4FF</color>
+    <color name="ios6_white">#FFFFFF</color>
+    <color name="ios6_black">#000000</color>
+    <color name="ios6_transparent">#00000000</color>
+    <color name="ios6_glow">#B3FFFFFF</color>
+</resources>
